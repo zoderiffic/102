@@ -3,8 +3,8 @@
 #include <stdio.h>
 #include <wiringPi.h>
 
-int increment = 500;
-int led_delay = 200;
+int increment = 20;
+int led_delay = 500;
 void setup();
 void bright_led_0();
 void dim_led_0();
