@@ -114,7 +114,6 @@ void move_up  (int time_to_hold)
     pwmWrite(26,0);
     delay(time_to_hold);
     pwmWrite(23,0);
-    pwmWrite(26,0);
 }
 
 void move_down  (int time_to_hold) 
@@ -123,7 +122,6 @@ void move_down  (int time_to_hold)
     pwmWrite(26,1000);
     delay(time_to_hold);
     pwmWrite(26,0);
-    pwmWrite(23,0);
 }
 
 void buzz () 
