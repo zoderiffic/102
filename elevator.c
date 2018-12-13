@@ -1,5 +1,18 @@
-//EMil Crestian  5  Oct  2018; motor spin up/down based on the presence of magnetic field 
+//EMil Arsen and Nasser
+//Elevator Project 15 Dec 2018
 //Based on how long the button is pressed;
+
+
+/* TODO:
+ * Verify interrupt service routine on pin 0 and 1;
+ * Verify circuit/direction of the motor:
+ *    Moving down PWM is not working  for now, should be an easier fix 
+ *
+ * Implement and connect buzzer
+ *
+ *
+ *
+ */
 #include <stdio.h>
 #include <wiringPi.h>
 #include <math.h>
@@ -30,11 +43,14 @@ void main ()
  }
   
 
-void check_floor ()
+void check_floor () // Check if floor requested is different than current floor
 {
   
     int floor_delta = old_floor - new_floor;
     printf("New Floor   : %d    Old floor   : %d    Floor_delta     : %d\n", new_floor, old_floor, floor_delta);
+
+
+    //If the floors are different move either up and down and decrement/increment delta change the delay for the motor running based on actual measurements;
     while ( floor_delta < 0) 
     {
       move_down (3000);
@@ -55,9 +71,9 @@ void setup()
 	//initialize wiringPi sequence
 	wiringPiSetup();
 	//Set directionality of GPIO port 0
-	pinMode(23,PWM_OUTPUT);
-	pinMode(26,PWM_OUTPUT);
-  wiringPiISR(0,INT_EDGE_FALLING,&outside_first_floor);
+	pinMode(23,PWM_OUTPUT); // Motor moving up
+	pinMode(26,PWM_OUTPUT); // Motor moving down
+  wiringPiISR(0,INT_EDGE_FALLING,&outside_first_floor); //pushbuttons for floor
   wiringPiISR(1,INT_EDGE_FALLING,&outside_second_floor);
   wiringPiISR(2,INT_EDGE_FALLING,&outside_third_floor);
   wiringPiISR(3,INT_EDGE_FALLING,&inside_first_floor);
