@@ -25,12 +25,14 @@ void outside_first_floor();
 void outside_second_floor();
 void outside_third_floor();
 void inside_first_floor();
+void inside_second_floor();
+void inside_third_floor();
 void check_floor();
 void buzz();
 int direction;
 int duration;
 int current_floor = 1;
-int old_floor=0;
+int old_floor=1;
 int new_floor;
 
 
@@ -77,6 +79,8 @@ void setup()
   wiringPiISR(1,INT_EDGE_FALLING,&outside_second_floor);
   wiringPiISR(2,INT_EDGE_FALLING,&outside_third_floor);
   wiringPiISR(3,INT_EDGE_FALLING,&inside_first_floor);
+  wiringPiISR(8,INT_EDGE_FALLING,&inside_second_floor);
+  wiringPiISR(9,INT_EDGE_FALLING,&inside_third_floor);
 }
 
 void outside_first_floor () 
@@ -107,6 +111,20 @@ void inside_first_floor ()
   check_floor();
 }
 
+
+void inside_second_floor ()
+{
+  old_floor= new_floor;
+  new_floor = 2;
+  check_floor();
+}
+
+void inside_third_floor ()
+{
+  old_floor= new_floor;
+  new_floor = 3;
+  check_floor();
+}
 
 void move_up  (int time_to_hold) 
 {
