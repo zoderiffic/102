@@ -53,12 +53,12 @@ void check_floor () // Check if floor requested is different than current floor
     //If the floors are different move either up and down and decrement/increment delta change the delay for the motor running based on actual measurements;
     while ( floor_delta < 0) 
     {
-      move_down (3000);
+      move_down (7500);
       floor_delta++;
     }
     while( floor_delta > 0) 
     {
-      move_up(3000);
+      move_up(7500);
       floor_delta--;
     }
 
