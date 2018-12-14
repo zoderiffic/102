@@ -33,7 +33,7 @@ int direction;
 int duration;
 int current_floor = 1;
 int old_floor=1;
-int new_floor;
+int new_floor = 1;
 
 
 void main () 
