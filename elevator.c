@@ -53,6 +53,20 @@ void check_floor () // Check if floor requested is different than current floor
 
 
     
+    switch(new_floor) 
+    {
+      case 1: 
+        digitalWrite(27,HIGH);
+        break;
+      case 2:
+        digitalWrite(28,HIGH);
+      case 3: 
+        digitalWrite(29,HIGH);
+        break;
+      default:
+        delay(1);
+     }
+
     //If the floors are different move either up and down and decrement/increment delta change the delay for the motor running based on actual measurements;
     while ( floor_delta < 0) 
     {
@@ -66,6 +80,9 @@ void check_floor () // Check if floor requested is different than current floor
     }
 
     delay(5000);
+    digitalWrite(27,LOW);
+    digitalWrite(28,LOW);
+    digitalWrite(29,LOW);
 
 }
 
@@ -84,6 +101,9 @@ void setup()
   wiringPiISR(3,INT_EDGE_FALLING,&inside_first_floor);
   wiringPiISR(8,INT_EDGE_FALLING,&inside_second_floor);
   wiringPiISR(9,INT_EDGE_FALLING,&inside_third_floor);
+  pinMode(27,OUTPUT);
+  pinMode(28,OUTPUT);
+  pinMode(29,OUTPUT);
 }
 
 void outside_first_floor () 
