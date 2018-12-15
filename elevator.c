@@ -60,6 +60,7 @@ void check_floor () // Check if floor requested is different than current floor
         break;
       case 2:
         digitalWrite(28,HIGH);
+        break;
       case 3: 
         digitalWrite(29,HIGH);
         break;
