@@ -39,6 +39,7 @@ int new_floor = 1;
 void main () 
 {
 	setup(); 	// Initialize setup sequence
+  digitalWrite(14,HIGH);
   while(1)
   {
   }
@@ -80,7 +81,10 @@ void check_floor () // Check if floor requested is different than current floor
       floor_delta--;
     }
 
+
+    digitalWrite(14,LOW);
     delay(5000);
+    digitalWrite(14,HIGH);
     digitalWrite(27,LOW);
     digitalWrite(28,LOW);
     digitalWrite(29,LOW);
@@ -105,6 +109,7 @@ void setup()
   pinMode(27,OUTPUT);
   pinMode(28,OUTPUT);
   pinMode(29,OUTPUT);
+  pinMode(14,OUTPUT);
 }
 
 void outside_first_floor () 
@@ -166,7 +171,3 @@ void move_down  (int time_to_hold)
     pwmWrite(26,0);
 }
 
-void buzz () 
-{
-  delay(1);
-}
